@@ -1,0 +1,37 @@
+class Node: 
+    def __init__(self,next=None,data=None): 
+        self.next=next
+        self.data=data 
+def reverseKNodes(head_ref, k) : 
+    temp=head_ref 
+    count=1
+    while(count<k):
+        temp=temp.next
+        count+=1
+    joint_point=temp.next
+    temp.next=None
+    prev=None
+    current=head_ref 
+    next=None
+    while(current!=None):
+        next=current.next
+        current.next=prev 
+        prev=current 
+        current=next
+    head_ref=prev 
+    current=head_ref 
+    while(current.next!=None): 
+        current=current.next
+    current.next=joint_point
+    return head_ref
+def push(head_ref,new_data) :
+    new_node=Node() 
+    new_node.data=new_data 
+    new_node.next=(head_ref) 
+    (head_ref)=new_node 
+    return head_ref
+def printList(head):
+    temp=head 
+    while(temp!=None):
+        print(temp.data,end=" ") 
+        temp=temp.next
